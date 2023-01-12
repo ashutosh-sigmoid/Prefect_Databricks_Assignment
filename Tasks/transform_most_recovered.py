@@ -6,7 +6,7 @@ from setLogger import set_logger
 from taskLoader import *
 
 log=set_logger()
-spark_df=sparkSession()
+
 
 
 def mostRecoveredCountry(covidData):
@@ -23,6 +23,6 @@ covidData=sparkSession()
 mostrecoveredcountry = mostRecoveredCountry(covidData)
 log.info(f"mostRecoveredCountry")
 loadIntoTxt(mostrecoveredcountry,"most_recoveredcountry.txt")
-readIntoTxt("most_recoveredcountry.txt")
+
 
 

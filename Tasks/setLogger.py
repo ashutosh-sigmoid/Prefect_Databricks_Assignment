@@ -10,4 +10,3 @@ def set_logger():
     return logging
 
 
-set_logger()

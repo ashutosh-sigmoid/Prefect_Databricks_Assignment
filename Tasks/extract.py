@@ -5,7 +5,7 @@ import logging
 import pandas as pd
 
 from setLogger import set_logger
-from SparkSession import *
+from SparkSession import sparkSession
 
 log=set_logger()
 
@@ -48,8 +48,8 @@ for i in range(20):
 
 # final_df.to_csv("/covid_data.csv",index=False)
 file_name = 'covid_data.csv'
-dir_path = '/dbfs/FileStore/tables/Ashutosh/'
-final_df.to_csv(dir_path+file_name,index=False,encoding="utf-8")
+dir_path = '/dbfs/FileStore/tables/Ashutosh'
+final_df.to_csv(dir_path+'/'+file_name,index=False,encoding="utf-8")
 
 log.info("Spark session initiated")
 df=sparkSession()

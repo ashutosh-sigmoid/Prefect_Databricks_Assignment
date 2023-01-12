@@ -11,7 +11,3 @@ def sparkSession():
 
 
 
-
-# def readData(spark):
-#     df=spark.read.csv("/covid_data.csv",inferSchema=True,header=True)
-#     return df
