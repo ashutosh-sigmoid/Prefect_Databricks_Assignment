@@ -11,10 +11,13 @@ def loadIntoTxt(data,file_name):
         
 def readIntoTxt(file_name):
     log.info("read text file")
-    with open(dir_name+file_name,"r") as f:
-        log.info(f"{f.read()}")
-        f.close()
-        
+    f = open(file_name, "r")
+    s = f.read()
+    f.close()
+    return s
+
+    
+       
         
        
         
