@@ -1,7 +1,7 @@
 # Prefect_Databricks_Assignment
 
 
-Download the required packages from requirements.txt file. API URL - https://covid-193.p.rapidapi.com/statistics (This API provided covid statistics country wise)
+Download the required packages from requirements.txt file. API URL - https://rapidapi.com/vaccovidlive-vaccovidlive-default/api/vaccovid-coronavirus-vaccine-and-treatment-tracker/ 
 
 Tools And Library Used::
 
