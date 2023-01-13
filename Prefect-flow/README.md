@@ -1,9 +1,10 @@
-#Steps followed to register flow in prefect cloud account
+#    Steps followed to register flow in prefect cloud account
+
 
 1.  Connect local machine with cloud:-
     prefect backend cloud
  
-2. Create an api key in prefect cloud account and logged with local machine:-
+ 2. Create an api key in prefect cloud account and logged with local machine:-
    prefect auth login --key your-key
   
 3. Create a project in your cloud account either through the UI or by typing in the terminal:-
