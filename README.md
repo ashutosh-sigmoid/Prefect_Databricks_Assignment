@@ -9,15 +9,12 @@ Prefect - create the flow and dependencies between tasks. Project will be trigge
 PySpark - Written spark code in python.
 
 DataBricks - Used as a platform for writing spark jobs.
+
 Process Involved in execution of project:
 
-Create different notebook for different tasks in Databricks.
-
-Install Prefect
-
-Connect Prefect with Databricks
-
-Define the flow and dependencies between tasks in prefect
-
-Register and execute the task using prefect UI.
+1. Create different notebook for different tasks in Databricks.
+2. Install Prefect
+3. Connect Prefect with Databricks
+4. Define the flow and dependencies between tasks in prefect
+5. Register and execute the task using prefect UI.
 
