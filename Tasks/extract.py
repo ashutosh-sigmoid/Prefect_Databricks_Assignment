@@ -12,12 +12,14 @@ log=set_logger()
 
 
 
-url = "https://vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com/api/npm-covid-data/countries"
 
-headers = {
-	"X-RapidAPI-Key": "c7733420admsh926a4b09e2d344fp1a2e7cjsnc476b536b77b",
-	"X-RapidAPI-Host": "vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com"
-}
+url=dbutils.widgets.get("url_name")
+dir_path=dbutils.widgets.get("dir_name")
+rapid_api_host=dbutils.widgets.get("rapid_api_host")
+rapid_api_key=dbutils.widgets.get("rapid_api_key")
+headers={"X-RapidAPI-Key": rapid_api_key,"X-RapidAPI-Host":rapid_api_host}
+
+
 
 response_data=[]
 log.info("Requesting Covid API...")
@@ -46,9 +48,9 @@ for i in range(20):
     final_df = pd.concat([final_df, temp_df], ignore_index=True)
 
 
-# final_df.to_csv("/covid_data.csv",index=False)
-file_name = 'covid_data.csv'
-dir_path = '/dbfs/FileStore/tables/Ashutosh'
+
+file_name ='covid_data.csv'
+
 final_df.to_csv(dir_path+'/'+file_name,index=False,encoding="utf-8")
 
 log.info("Spark session initiated")
@@ -58,5 +60,4 @@ df.show()
 
 
 
-# df=spark.read.csv('/FileStore/tables/Ashutosh/covid_data.csv',inferSchema=True,header=True)
-# df.show(n=20,truncate=False)
+

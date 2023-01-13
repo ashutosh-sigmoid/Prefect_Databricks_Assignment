@@ -1,0 +1,9 @@
+[databricks]
+dir_path="/dbfs/FileStore/tables/Ashutosh"
+cluster_id="0113-052453-kes2syt7"
+run_name="prefect-job"
+
+
+[api]
+host="vaccovid-coronavirus-vaccine-and-treatment-tracker.p.rapidapi.com"
+url="https://${api.host}/api/npm-covid-data/countries"
