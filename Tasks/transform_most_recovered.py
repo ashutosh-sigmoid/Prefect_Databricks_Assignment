@@ -7,7 +7,6 @@ from taskLoader import *
 
 log=set_logger()
 
-dir_name=dbutils.widgets.get("dir_name")
 
 def mostRecoveredCountry(covidData):
     log.info("Recovered country")
@@ -22,7 +21,7 @@ def mostRecoveredCountry(covidData):
 covidData=sparkSession()
 mostrecoveredcountry = mostRecoveredCountry(covidData)
 log.info(f"mostRecoveredCountry")
-loadIntoTxt(mostrecoveredcountry,dir_name,"most_recoveredcountry.txt")
+loadIntoTxt(mostrecoveredcountry,"most_recoveredcountry.txt")
 
 
 

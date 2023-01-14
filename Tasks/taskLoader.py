@@ -1,9 +1,9 @@
 from setLogger import set_logger
 log=set_logger()
-# dir_name='/dbfs/FileStore/tables/Ashutosh/'
-# dir_name=dbutils.widgets.get("dir_name")
 
-def loadIntoTxt(data,dir_name,file_name):
+dir_name='/dbfs/FileStore/tables/Ashutosh'
+
+def loadIntoTxt(data,file_name):
     log.info("Load into text file")
     with open(dir_name+ '/' +file_name, "w") as f:
         f.write(data)

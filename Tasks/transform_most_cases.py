@@ -5,7 +5,7 @@ from SparkSession import sparkSession
 from setLogger import set_logger
 from taskLoader import *
 log=set_logger()
-dir_name=dbutils.widgets.get("dir_name")
+
 
 
 
@@ -19,5 +19,5 @@ def maxCaseCountry(covidData):
 covidData=sparkSession()
 countriesWithHighestCovid = maxCaseCountry(covidData)
 log.info("countriesWithHighestCovid")
-loadIntoTxt(countriesWithHighestCovid,dir_name,"most_cases_country.txt")
+loadIntoTxt(countriesWithHighestCovid,"most_cases_country.txt")
 

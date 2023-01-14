@@ -4,9 +4,8 @@ import prefect
 from prefect import task, Flow
 from prefect.executors import LocalDaskExecutor
 from prefect.client.secrets import Secret
-
 from prefect.tasks.databricks.databricks_submitjob import DatabricksSubmitRun
-# from prefect.tasks.secrets import PrefectSecret
+
 
 
 
@@ -15,33 +14,33 @@ from prefect.tasks.databricks.databricks_submitjob import DatabricksSubmitRun
 runtime_name=prefect.config.databricks.run_name
 cluster_id=prefect.config.databricks.cluster_id
 dir_path=prefect.config.databricks.dir_path
+NotebookPath=prefect.config.databricks.notebook_path
 
 
 
-# get databricks_connection credental
+# # get databricks_connection credental
 
 conn = Secret("DATABRICKS_CONNECTION_STRING").get()
 
-#get api credential
+# #get api credential
 api_host = Secret("RAPID_API_HOST").get()
 api_key = Secret("RAPID_API_KEY").get()
-url=prefect.config.api.url
+
+#api configuration
+url=prefect.config.api.url_head
+countries=prefect.config.api.countries
+iso=prefect.config.api.iso_code
 
 
 
-
-
-
-
-
-# submit configuration
+# add configuration
 
 def get_submit_config(NoteBookName,Notebook_params):
     task_setup = {
         "run_name": runtime_name,
         "existing_cluster_id": cluster_id,
         "notebook_task":{
-            "notebook_path":f"/Repos/agoyal@sigmoidanalytics.com/Prefect_Databricks_Assignment/Tasks/{NoteBookName}",
+            "notebook_path":f"{NotebookPath}/{NoteBookName}",
             "base_parameters": Notebook_params,
 
         }
@@ -49,11 +48,7 @@ def get_submit_config(NoteBookName,Notebook_params):
     }
     return task_setup
 
-
-api_host = Secret("RAPID_API_HOST").get()
-api_key = Secret("RAPID_API_KEY").get()
-rapid_api_params = {"rapid_api_host": api_host, "rapid_api_key": api_key,"dir_name":dir_path,"url_name": url }
-
+rapid_api_params = {"rapid_api_host": api_host, "rapid_api_key": api_key,"dir_name":dir_path,"url_name":url,"countries_list":countries,"iso_list":iso }
 
 
 
@@ -79,9 +74,11 @@ with Flow(name="Prefect-DataBricks-Ashutosh",schedule=None) as flow:
     flow.add_edge(submit_Task_4, submit_Task_5)
 
 
-
 # Selecting Executor for parallel executions
 flow.executor = LocalDaskExecutor()
+
+# register flow in UI
 flow.register("prefect-dataBricks-Ashutosh")
+
 
 
