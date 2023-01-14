@@ -1,12 +1,13 @@
 # Databricks notebook source
 from pyspark.sql.functions import col, lit, first, round, last
 from pyspark.sql import SparkSession
-from SparkSession import sparkSession
+from SparkSession import readCsv
 from setLogger import set_logger
 from taskLoader import *
 
 log=set_logger()
 
+dir_name=dbutils.widgets.get("dir_name")
 
 def mostRecoveredCountry(covidData):
     log.info("Recovered country")
@@ -18,10 +19,10 @@ def mostRecoveredCountry(covidData):
 
 
 
-covidData=sparkSession()
+covidData=readCsv(spark)
 mostrecoveredcountry = mostRecoveredCountry(covidData)
 log.info(f"mostRecoveredCountry")
-loadIntoTxt(mostrecoveredcountry,"most_recoveredcountry.txt")
+loadIntoTxt(mostrecoveredcountry,dir_name,"most_recoveredcountry.txt")
 
 
 

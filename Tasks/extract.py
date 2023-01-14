@@ -3,14 +3,13 @@ import requests
 import json
 import logging
 import pandas as pd
-import ast
-
 from setLogger import set_logger
 from SparkSession import sparkSession
-from taskLoader import *
+
 
 
 log=set_logger()
+
 
 
 # get url_head,dir_path,rapid_api,country_list and iso_list
@@ -23,10 +22,8 @@ country_list=dbutils.widgets.get("countries_list")
 iso_list=dbutils.widgets.get("iso_list")
 headers={"X-RapidAPI-Key": rapid_api_key,"X-RapidAPI-Host":rapid_api_host}
 
-
 key=country_list.split(',')
 values=iso_list.split(',')
-
 
 countries=[]
 for i in  range(len(key)):
@@ -74,6 +71,9 @@ for country in countries:
 # COMMAND ----------
 
 
+
+
+
 final_df = pd.DataFrame()
 for i in range(20):
     country_data = response_data[i]
@@ -81,16 +81,21 @@ for i in range(20):
     final_df = pd.concat([final_df, temp_df], ignore_index=True)
 
 
-
 file_name ='covid_data.csv'
 
+# initiate sparkSession
 
-final_df.to_csv(dir_path+'/'+file_name,index=False,encoding="utf-8")
+spark=sparkSession()
 
-log.info("Spark session initiated")
-dataFrame=sparkSession()
+# create spark DataFrame
+sparkDF=spark.createDataFrame(final_df)
 
-log.info("Dataframe created")
+# write spark dataframe to csv file
+sparkDF.write.option("header",True).mode('overwrite').csv(dir_path+'/'+file_name)
+
+
+
+
 
 
 

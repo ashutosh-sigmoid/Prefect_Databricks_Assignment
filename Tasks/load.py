@@ -8,8 +8,9 @@ import pandas as pd
 log=set_logger()
 
 dir_path=dbutils.widgets.get("dir_name")
-file_name="final_covid_data.csv"
-merge_csv=dir_path+'/' +file_name
+
+final_file_name="final_covid_data.csv"
+merge_csv=dir_path+'/' +final_file_name
 file_task2= dir_path +'/' + "most_affected_country.txt"
 file_task3= dir_path + '/' + "most_cases_country.txt"
 file_task4=  dir_path + '/' + "most_recoveredcountry.txt"
@@ -43,6 +44,7 @@ mostAffectedCountry = readIntoTxt(file_task2)
 maxCaseCountry =readIntoTxt(file_task3)
 mostRecoveredCountry= readIntoTxt(file_task4)
 mergeTask(mostAffectedCountry,maxCaseCountry,mostRecoveredCountry)
+
 
 
 

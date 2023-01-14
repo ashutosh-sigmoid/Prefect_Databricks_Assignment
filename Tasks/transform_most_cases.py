@@ -1,13 +1,13 @@
 # Databricks notebook source
 from pyspark.sql.functions import col, lit, first, round, last
 from pyspark.sql import SparkSession
-from SparkSession import sparkSession
+from SparkSession import readCsv
 from setLogger import set_logger
 from taskLoader import *
 log=set_logger()
 
 
-
+dir_name=dbutils.widgets.get("dir_name")
 
 # maximum case of covid
 def maxCaseCountry(covidData):
@@ -16,8 +16,8 @@ def maxCaseCountry(covidData):
     return countriesWithHighestCovid
 
 
-covidData=sparkSession()
+covidData=readCsv(spark)
 countriesWithHighestCovid = maxCaseCountry(covidData)
 log.info("countriesWithHighestCovid")
-loadIntoTxt(countriesWithHighestCovid,"most_cases_country.txt")
+loadIntoTxt(countriesWithHighestCovid,dir_name,"most_cases_country.txt")
 
