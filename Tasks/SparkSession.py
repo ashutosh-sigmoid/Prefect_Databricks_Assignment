@@ -1,6 +1,6 @@
 from pyspark.sql import SparkSession
 
-# dir_path=dbutils.widgets.get("dir_name")
+
 file_name="covid_data.csv"
 def sparkSession():
         spark = SparkSession.builder.appName("SPARK").getOrCreate()
